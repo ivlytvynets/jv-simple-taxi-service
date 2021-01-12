@@ -14,6 +14,10 @@ public class Driver {
         }
     }
 
+    public Driver() {
+
+    }
+
     public Long getId() {
         return id;
     }

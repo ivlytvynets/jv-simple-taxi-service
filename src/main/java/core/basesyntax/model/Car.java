@@ -1,6 +1,7 @@
 package core.basesyntax.model;
 
 import core.basesyntax.exception.NullValueException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Car {
@@ -14,6 +15,10 @@ public class Car {
             this.model = model;
             this.manufacturer = manufacturer;
         }
+    }
+
+    public Car() {
+
     }
 
     public Long getId() {
@@ -44,7 +49,7 @@ public class Car {
     }
 
     public List<Driver> getDrivers() {
-        return drivers;
+        return drivers == null ? new ArrayList<>() : drivers;
     }
 
     public void setDrivers(List<Driver> drivers) {

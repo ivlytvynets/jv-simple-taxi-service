@@ -1,6 +1,7 @@
 package core.basesyntax.service.impl;
 
 import core.basesyntax.dao.CarDao;
+import core.basesyntax.exception.NullValueException;
 import core.basesyntax.lib.Inject;
 import core.basesyntax.lib.Service;
 import core.basesyntax.model.Car;
@@ -45,12 +46,20 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void addDriverToCar(Driver driver, Car car) {
-        car.getDrivers().add(driver);
+        if (car.getId() == null) {
+            carDao.create(car);
+        }
+        List<Driver> drivers = car.getDrivers();
+        drivers.add(driver);
+        car.setDrivers(drivers);
         carDao.update(car);
     }
 
     @Override
     public void removeDriverFromCar(Driver driver, Car car) {
+        if (car == null) {
+            throw new NullValueException("You can't remove driver because car is null");
+        }
         car.getDrivers().remove(driver);
         carDao.update(car);
     }
