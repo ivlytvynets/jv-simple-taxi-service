@@ -1,5 +1,6 @@
 package core.basesyntax.model;
 
+import core.basesyntax.exception.NullValueException;
 import java.util.List;
 
 public class Car {
@@ -9,8 +10,10 @@ public class Car {
     private List<Driver> drivers;
 
     public Car(String model, Manufacturer manufacturer) {
-        this.model = model;
-        this.manufacturer = manufacturer;
+        if (!(checkForNull(model) || checkForNull(manufacturer))) {
+            this.model = model;
+            this.manufacturer = manufacturer;
+        }
     }
 
     public Long getId() {
@@ -18,6 +21,7 @@ public class Car {
     }
 
     public void setId(Long id) {
+        checkForNull(id);
         this.id = id;
     }
 
@@ -26,6 +30,7 @@ public class Car {
     }
 
     public void setModel(String model) {
+        checkForNull(model);
         this.model = model;
     }
 
@@ -34,6 +39,7 @@ public class Car {
     }
 
     public void setManufacturer(Manufacturer manufacturer) {
+        checkForNull(manufacturer);
         this.manufacturer = manufacturer;
     }
 
@@ -42,6 +48,7 @@ public class Car {
     }
 
     public void setDrivers(List<Driver> drivers) {
+        checkForNull(drivers);
         this.drivers = drivers;
     }
 
@@ -53,5 +60,12 @@ public class Car {
                 + ", manufacturer=" + manufacturer
                 + ", drivers=" + drivers
                 + '}';
+    }
+
+    private boolean checkForNull(Object o) {
+        if (o == null) {
+            throw new NullValueException("Invalid value: null");
+        }
+        return true;
     }
 }

@@ -1,13 +1,17 @@
 package core.basesyntax.model;
 
+import core.basesyntax.exception.NullValueException;
+
 public class Driver {
     private Long id;
     private String name;
     private String licenceNumber;
 
     public Driver(String name, String licenceNumber) {
-        this.name = name;
-        this.licenceNumber = licenceNumber;
+        if (!(checkForNull(name) || checkForNull(licenceNumber))) {
+            this.name = name;
+            this.licenceNumber = licenceNumber;
+        }
     }
 
     public Long getId() {
@@ -15,6 +19,7 @@ public class Driver {
     }
 
     public void setId(Long id) {
+        checkForNull(id);
         this.id = id;
     }
 
@@ -23,6 +28,7 @@ public class Driver {
     }
 
     public void setName(String name) {
+        checkForNull(name);
         this.name = name;
     }
 
@@ -31,6 +37,7 @@ public class Driver {
     }
 
     public void setLicenceNumber(String licenceNumber) {
+        checkForNull(licenceNumber);
         this.licenceNumber = licenceNumber;
     }
 
@@ -41,5 +48,12 @@ public class Driver {
                 + ", name='" + name + '\''
                 + ", licenceNumber='" + licenceNumber + '\''
                 + '}';
+    }
+
+    private boolean checkForNull(Object o) {
+        if (o == null) {
+            throw new NullValueException("Invalid value: null");
+        }
+        return true;
     }
 }

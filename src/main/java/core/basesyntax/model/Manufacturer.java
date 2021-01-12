@@ -1,13 +1,17 @@
 package core.basesyntax.model;
 
+import core.basesyntax.exception.NullValueException;
+
 public class Manufacturer {
     private Long id;
     private String name;
     private String country;
 
     public Manufacturer(String name, String country) {
-        this.name = name;
-        this.country = country;
+        if (!(checkForNull(name) || checkForNull(country))) {
+            this.name = name;
+            this.country = country;
+        }
     }
 
     public Manufacturer() {
@@ -18,6 +22,7 @@ public class Manufacturer {
     }
 
     public void setId(Long id) {
+        checkForNull(id);
         this.id = id;
     }
 
@@ -26,6 +31,7 @@ public class Manufacturer {
     }
 
     public void setName(String name) {
+        checkForNull(name);
         this.name = name;
     }
 
@@ -34,6 +40,7 @@ public class Manufacturer {
     }
 
     public void setCountry(String country) {
+        checkForNull(country);
         this.country = country;
     }
 
@@ -45,5 +52,12 @@ public class Manufacturer {
                 + ", country='"
                 + country + '\''
                 + '}';
+    }
+
+    private boolean checkForNull(Object o) {
+        if (o == null) {
+            throw new NullValueException("Invalid value: null");
+        }
+        return true;
     }
 }
