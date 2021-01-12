@@ -6,6 +6,7 @@ import core.basesyntax.lib.Dao;
 import core.basesyntax.model.Manufacturer;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 @Dao
 public class ManufacturerDaoImpl implements ManufacturerDao {
@@ -17,13 +18,10 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
 
     @Override
     public Optional<Manufacturer> get(Long id) {
-        List<Manufacturer> manufacturers = Storage.manufacturers;
-        for (Manufacturer manufacturer : manufacturers) {
-            if (manufacturer.getId() == id) {
-                return Optional.of(manufacturer);
-            }
-        }
-        return Optional.empty();
+        return Storage.manufacturers
+                .stream()
+                .filter(manufacturer -> manufacturer.getId().equals(id))
+                .findFirst();
     }
 
     @Override
@@ -33,25 +31,15 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
 
     @Override
     public Manufacturer update(Manufacturer manufacturer) {
-        List<Manufacturer> manufacturers = Storage.manufacturers;
-        for (Manufacturer object : manufacturers) {
-            if (object.getId() == manufacturer.getId()) {
-                Storage.manufacturers.set(Math.toIntExact(object.getId() - 1L), manufacturer);
-                return manufacturer;
-            }
-        }
-        return null;
+        IntStream.range(0, Storage.manufacturers.size())
+                .filter(i -> Storage.manufacturers.get(i).getId().equals(manufacturer.getId()))
+                .findFirst()
+                .ifPresent(i -> Storage.manufacturers.set(i, manufacturer));
+        return manufacturer;
     }
 
     @Override
     public boolean delete(Long id) {
-        List<Manufacturer> manufacturers = Storage.manufacturers;
-        for (int i = 0; i < manufacturers.size(); i++) {
-            if (manufacturers.get(i).getId() == id) {
-                Storage.manufacturers.remove(Math.toIntExact(i));
-                return true;
-            }
-        }
-        return false;
+        return Storage.manufacturers.removeIf(manufacturer -> manufacturer.getId().equals(id));
     }
 }
