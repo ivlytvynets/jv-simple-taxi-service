@@ -103,9 +103,9 @@ public class Application {
         carService.removeDriverFromCar(ivan, car2);
         carService.removeDriverFromCar(dmytro, car1);
 
-        System.out.println(carService.get(1L));
-        System.out.println(carService.get(2L));
-        System.out.println(carService.get(3L));
+        System.out.println(carService.getAllByDriver(1L));
+        System.out.println(carService.getAllByDriver(2L));
+        System.out.println(carService.getAllByDriver(3L));
 
         carService.delete(1L);
         System.out.println(carService.getAll());
