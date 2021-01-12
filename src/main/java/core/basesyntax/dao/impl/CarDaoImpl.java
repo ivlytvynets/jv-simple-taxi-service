@@ -5,8 +5,6 @@ import core.basesyntax.db.Storage;
 import core.basesyntax.lib.Dao;
 import core.basesyntax.model.Car;
 import core.basesyntax.model.Driver;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -38,10 +36,10 @@ public class CarDaoImpl implements CarDao {
         return Storage.cars
                 .stream()
                 .filter(car -> car.getDrivers()
-                            .stream()
-                            .map(Driver::getId)
-                            .collect(Collectors.toList())
-                            .contains(driverId))
+                        .stream()
+                        .map(Driver::getId)
+                        .collect(Collectors.toList())
+                        .contains(driverId))
                 .collect(Collectors.toList());
     }
 
