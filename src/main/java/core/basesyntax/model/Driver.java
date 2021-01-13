@@ -10,6 +10,10 @@ public class Driver {
         this.licenceNumber = licenceNumber;
     }
 
+    public Driver() {
+
+    }
+
     public Long getId() {
         return id;
     }
@@ -37,8 +41,7 @@ public class Driver {
     @Override
     public String toString() {
         return "Driver{"
-                + "id=" + id
-                + ", name='" + name + '\''
+                + "name='" + name + '\''
                 + ", licenceNumber='" + licenceNumber + '\''
                 + '}';
     }

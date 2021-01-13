@@ -1,5 +1,6 @@
 package core.basesyntax.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Car {
@@ -11,6 +12,11 @@ public class Car {
     public Car(String model, Manufacturer manufacturer) {
         this.model = model;
         this.manufacturer = manufacturer;
+        drivers = new ArrayList<>();
+    }
+
+    public Car() {
+
     }
 
     public Long getId() {
@@ -48,10 +54,8 @@ public class Car {
     @Override
     public String toString() {
         return "Car{"
-                + "id=" + id
-                + ", model='" + model + '\''
-                + ", manufacturer=" + manufacturer
-                + ", drivers=" + drivers
+                + "model='" + model + ", "
+                + manufacturer
                 + '}';
     }
 }
