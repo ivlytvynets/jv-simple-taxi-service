@@ -12,6 +12,7 @@ public class Car {
     public Car(String model, Manufacturer manufacturer) {
         this.model = model;
         this.manufacturer = manufacturer;
+        drivers = new ArrayList<>();
     }
 
     public Car() {
@@ -43,7 +44,7 @@ public class Car {
     }
 
     public List<Driver> getDrivers() {
-        return drivers == null ? new ArrayList<>() : drivers;
+        return drivers;
     }
 
     public void setDrivers(List<Driver> drivers) {
