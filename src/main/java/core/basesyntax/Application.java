@@ -24,7 +24,7 @@ public class Application {
         volkswagen.setName("Volkswagen");
         volkswagen.setCountry("Germany");
 
-        Car car1 = new Car();
+        /*Car car1 = new Car();
         car1.setModel("GLC-350");
         car1.setManufacturer(mercedes);
 
@@ -46,15 +46,15 @@ public class Application {
 
         Driver bohdan = new Driver();
         bohdan.setName("Bohdan");
-        bohdan.setLicenceNumber("DS789654");
+        bohdan.setLicenceNumber("DS789654");*/
 
         ManufacturerService manufacturerService = (ManufacturerService) injector
                 .getInstance(ManufacturerService.class);
-        manufacturerService.create(mercedes);
+        /*manufacturerService.create(mercedes);
         manufacturerService.create(toyota);
-        manufacturerService.create(volkswagen);
+        manufacturerService.create(volkswagen);*/
 
-        DriverService driverService = (DriverService) injector.getInstance(DriverService.class);
+        /*DriverService driverService = (DriverService) injector.getInstance(DriverService.class);
         driverService.create(ivan);
         driverService.create(dmytro);
         driverService.create(bohdan);
@@ -62,25 +62,25 @@ public class Application {
         CarService carService = (CarService) injector.getInstance(CarService.class);
         carService.create(car1);
         carService.create(car2);
-        carService.create(car3);
+        carService.create(car3);*/
 
         System.out.println(manufacturerService.getAll());
-        System.out.println(driverService.getAll());
-        System.out.println(carService.getAll());
+        /*System.out.println(driverService.getAll());
+        System.out.println(carService.getAll());*/
 
-        manufacturerService.update(mercedes);
+        /*manufacturerService.update(mercedes);
         manufacturerService.update(toyota);
-        manufacturerService.update(volkswagen);
+        manufacturerService.update(volkswagen);*/
 
-        driverService.update(ivan);
+        /*driverService.update(ivan);
         driverService.update(dmytro);
-        driverService.update(bohdan);
+        driverService.update(bohdan);*/
 
         System.out.println(manufacturerService.get(1L));
         System.out.println(manufacturerService.get(2L));
         System.out.println(manufacturerService.get(3L));
 
-        System.out.println(driverService.get(1L));
+        /*System.out.println(driverService.get(1L));
         System.out.println(driverService.get(2L));
         System.out.println(driverService.get(3L));
 
@@ -119,7 +119,7 @@ public class Application {
         driverService.delete(2L);
         System.out.println(driverService.getAll());
         driverService.delete(3L);
-        System.out.println(driverService.getAll());
+        System.out.println(driverService.getAll());*/
 
         manufacturerService.delete(1L);
         System.out.println(manufacturerService.getAll());

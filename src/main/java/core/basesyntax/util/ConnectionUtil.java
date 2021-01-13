@@ -18,7 +18,7 @@ public class ConnectionUtil {
         Properties dbProperties = new Properties();
         dbProperties.put("user", "ivanlytvynets");
         dbProperties.put("password", "Vanya_2002");
-        String url = "jdbc:mysql://localhost:3306";
+        String url = "jdbc:mysql://localhost:3306/taxi_service";
         try {
             return DriverManager.getConnection(url, dbProperties);
         } catch (SQLException e) {
