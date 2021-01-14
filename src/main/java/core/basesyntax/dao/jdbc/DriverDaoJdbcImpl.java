@@ -27,7 +27,7 @@ public class DriverDaoJdbcImpl implements DriverDao {
             insert.execute();
             ResultSet resultSet = insert.getGeneratedKeys();
             if (resultSet.next()) {
-                driver.setId(resultSet.getObject("driver_id", Long.class));
+                driver.setId(resultSet.getObject(1, Long.class)); //TODO: replace 1
             }
             insert.close();
             connection.close();
