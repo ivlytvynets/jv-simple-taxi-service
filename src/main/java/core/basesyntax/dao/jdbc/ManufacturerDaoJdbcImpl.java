@@ -1,12 +1,14 @@
 package core.basesyntax.dao.jdbc;
 
-import com.sun.jdi.connect.Connector;
 import core.basesyntax.dao.ManufacturerDao;
 import core.basesyntax.lib.Dao;
 import core.basesyntax.model.Manufacturer;
 import core.basesyntax.util.ConnectionUtil;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -108,6 +110,7 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
 
     @Override
     public boolean delete(Long id) {
+        //TODO: implement this method
         /*String query = "UPDATE manufacturers SET deleted=true WHERE manufacturer_id=?";
 
         try (Connection connection = ConnectionUtil.getConnection()) {
