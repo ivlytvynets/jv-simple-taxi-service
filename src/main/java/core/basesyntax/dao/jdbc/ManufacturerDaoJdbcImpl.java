@@ -44,7 +44,7 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
                  PreparedStatement selectById = connection.prepareStatement(query)) {
             selectById.setLong(1, id);
             ResultSet resultSet = selectById.executeQuery();
-            Manufacturer manufacturer = new Manufacturer();
+            Manufacturer manufacturer = null;
             if (resultSet.next()) {
                 manufacturer = getManufacturerFromResultSet(resultSet);
             }
@@ -58,8 +58,8 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
     public List<Manufacturer> getAll() {
         String query = "SELECT * FROM manufacturers WHERE deleted=FALSE";
         try (Connection connection = ConnectionUtil.getConnection();
-                 Statement selectAll = connection.createStatement()) {
-            ResultSet resultSet = selectAll.executeQuery(query);
+                 Statement selectAllSt = connection.createStatement()) {
+            ResultSet resultSet = selectAllSt.executeQuery(query);
             List<Manufacturer> manufacturers = new ArrayList<>();
             while (resultSet.next()) {
                 manufacturers.add(getManufacturerFromResultSet(resultSet));
@@ -93,8 +93,6 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
                  PreparedStatement stDelete = connection.prepareStatement(query)) {
             stDelete.setLong(1, id);
             int updatedRows = stDelete.executeUpdate();
-            stDelete.close();
-            connection.close();
             return updatedRows > 0;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't delete manufacturer with id " + id, e);
