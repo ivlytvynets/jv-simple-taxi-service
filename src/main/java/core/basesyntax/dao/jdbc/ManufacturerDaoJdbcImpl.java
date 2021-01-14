@@ -21,24 +21,19 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
         String queryInsert = "INSERT INTO manufacturers "
                 + "(manufacturer_name, manufacturer_country) "
                 + "VALUES (?, ?)";
-        String querySelect = "SELECT * FROM manufacturers WHERE manufacturer_name=? "
-                + "AND deleted=FALSE";
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement insert = connection.prepareStatement(queryInsert,
                     Statement.RETURN_GENERATED_KEYS);
             insert.setString(1, manufacturer.getName());
             insert.setString(2, manufacturer.getCountry());
             insert.execute();
-            insert.close();
-            PreparedStatement select = connection.prepareStatement(querySelect);
-            select.setString(1, manufacturer.getName());
-            ResultSet resultSet = select.executeQuery();
+            ResultSet resultSet = insert.getGeneratedKeys();
 
             if (resultSet.next()) {
                 manufacturer.setId(resultSet.getObject("manufacturer_id", Long.class));
             }
 
-            select.close();
+            insert.close();
             connection.close();
 
             return manufacturer;
