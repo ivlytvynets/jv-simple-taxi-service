@@ -42,8 +42,7 @@ public class CarDaoJdbcImpl implements CarDao {
     public Optional<Car> get(Long id) {
         String querySelect = "SELECT * FROM cars WHERE car_id=? AND deleted=FALSE";
         try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement stSelectById = connection.prepareStatement(querySelect,
-                        Statement.RETURN_GENERATED_KEYS)) {
+                PreparedStatement stSelectById = connection.prepareStatement(querySelect)) {
             stSelectById.setLong(1, id);
             ResultSet resultSet = stSelectById.executeQuery();
             Car car = null;
