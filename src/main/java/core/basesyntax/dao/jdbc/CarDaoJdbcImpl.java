@@ -143,7 +143,7 @@ public class CarDaoJdbcImpl implements CarDao {
         car.setManufacturer(getManufacturerById(resultSet.getObject("manufacturer_id",
                 Long.class)));
         String querySelectDrivers = "SELECT d.driver_id,"
-                + "FROM drivers d INNER JOIN cars_drivers cd ON cd.driver_id=d.driver_id,"
+                + "FROM drivers d INNER JOIN cars_drivers cd ON cd.driver_id=d.driver_id "
                 + "WHERE cd.car_id=?";
         try (PreparedStatement selectDrivers = connection
                 .prepareStatement(querySelectDrivers)) {
