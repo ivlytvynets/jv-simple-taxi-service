@@ -138,7 +138,6 @@ public class CarDaoJdbcImpl implements CarDao {
         stDeleteDrivers.setLong(1, car.getId());
         stDeleteDrivers.executeUpdate();
         stDeleteDrivers.close();
-        connection.close();
     }
 
     private void insertNewDrivers(Car car, Connection connection) throws SQLException {
@@ -152,7 +151,6 @@ public class CarDaoJdbcImpl implements CarDao {
             stInsertDrivers.executeUpdate();
         }
         stInsertDrivers.close();
-        connection.close();
     }
 
     private Car getCarFromResultSet(ResultSet resultSet) throws SQLException {
