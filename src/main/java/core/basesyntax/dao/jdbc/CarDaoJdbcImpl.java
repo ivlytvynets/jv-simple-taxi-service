@@ -111,8 +111,8 @@ public class CarDaoJdbcImpl implements CarDao {
             stUpdateManufacturer.setLong(2, car.getId());
             stUpdateManufacturer.executeUpdate();
             stUpdateManufacturer.close();
-            deleteOldDrivers(car);
-            insertNewDrivers(car);
+            deleteOldDrivers(car, connection);
+            insertNewDrivers(car, connection);
             return car;
         } catch (SQLException e) {
             throw new DataProcessingException("Can't update car " + car, e);
@@ -131,9 +131,8 @@ public class CarDaoJdbcImpl implements CarDao {
         }
     }
 
-    private void deleteOldDrivers(Car car) throws SQLException {
+    private void deleteOldDrivers(Car car, Connection connection) throws SQLException {
         String queryDeleteOldDrivers = "DELETE FROM cars_drivers WHERE car_id=?";
-        Connection connection = ConnectionUtil.getConnection();
         PreparedStatement stDeleteDrivers = connection
                 .prepareStatement(queryDeleteOldDrivers);
         stDeleteDrivers.setLong(1, car.getId());
@@ -142,10 +141,9 @@ public class CarDaoJdbcImpl implements CarDao {
         connection.close();
     }
 
-    private void insertNewDrivers(Car car) throws SQLException {
+    private void insertNewDrivers(Car car, Connection connection) throws SQLException {
         String queryInsertNewDrivers = "INSERT INTO cars_drivers (driver_id, car_id)"
                 + "VALUES(?, ?)";
-        Connection connection = ConnectionUtil.getConnection();
         PreparedStatement stInsertDrivers = connection
                 .prepareStatement(queryInsertNewDrivers);
         stInsertDrivers.setLong(2, car.getId());
