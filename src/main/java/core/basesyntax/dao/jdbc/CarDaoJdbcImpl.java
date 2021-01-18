@@ -155,7 +155,6 @@ public class CarDaoJdbcImpl implements CarDao {
                 drivers.add(getDriverById(currentDriverId));
             }
             car.setDrivers(drivers);
-
         } catch (SQLException e) {
             car.setDrivers(new ArrayList<>());
         }
