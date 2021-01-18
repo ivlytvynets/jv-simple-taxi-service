@@ -102,15 +102,16 @@ public class CarDaoJdbcImpl implements CarDao {
 
     @Override
     public Car update(Car car) {
-        String queryUpdateManufacturer = "UPDATE cars SET model=? WHERE id=? "
+        String queryUpdateCar = "UPDATE cars SET model=?, manufacturer_id=? WHERE id=? "
                 + "AND deleted=FALSE";
         try (Connection connection = ConnectionUtil.getConnection();
-                PreparedStatement stUpdateManufacturer = connection
-                        .prepareStatement(queryUpdateManufacturer)) {
-            stUpdateManufacturer.setString(1, car.getModel());
-            stUpdateManufacturer.setLong(2, car.getId());
-            stUpdateManufacturer.executeUpdate();
-            stUpdateManufacturer.close();
+                PreparedStatement stUpdateCar = connection
+                        .prepareStatement(queryUpdateCar)) {
+            stUpdateCar.setString(1, car.getModel());
+            stUpdateCar.setLong(2, car.getManufacturer().getId());
+            stUpdateCar.setLong(3, car.getId());
+            stUpdateCar.executeUpdate();
+            stUpdateCar.close();
             deleteOldDrivers(car, connection);
             insertNewDrivers(car, connection);
             return car;
