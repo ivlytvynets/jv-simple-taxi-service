@@ -18,7 +18,7 @@ import java.util.Optional;
 public class DriverDaoJdbcImpl implements DriverDao {
     @Override
     public Driver create(Driver driver) {
-        String queryInsert = "INSERT INTO drivers (driver_name, driver_licence_number)"
+        String queryInsert = "INSERT INTO drivers (name, licence_number)"
                 + "VALUES (?, ?)";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement insert = connection.prepareStatement(queryInsert,
@@ -38,7 +38,7 @@ public class DriverDaoJdbcImpl implements DriverDao {
 
     @Override
     public Optional<Driver> get(Long id) {
-        String querySelect = "SELECT * FROM drivers WHERE driver_id=? AND deleted=FALSE";
+        String querySelect = "SELECT * FROM drivers WHERE id=? AND deleted=FALSE";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement select = connection.prepareStatement(querySelect)) {
             select.setLong(1, id);
@@ -71,8 +71,8 @@ public class DriverDaoJdbcImpl implements DriverDao {
 
     @Override
     public Driver update(Driver driver) {
-        String queryUpdate = "UPDATE drivers SET driver_name=?, driver_licence_number=? "
-                + "WHERE driver_id=? AND deleted=FALSE";
+        String queryUpdate = "UPDATE drivers SET name=?, licence_number=? "
+                + "WHERE id=? AND deleted=FALSE";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement select = connection.prepareStatement(queryUpdate);) {
             select.setString(1, driver.getName());
@@ -87,7 +87,7 @@ public class DriverDaoJdbcImpl implements DriverDao {
 
     @Override
     public boolean delete(Long id) {
-        String queryDelete = "UPDATE drivers SET deleted=TRUE WHERE driver_id=?";
+        String queryDelete = "UPDATE drivers SET deleted=TRUE WHERE id=?";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement delete = connection.prepareStatement(queryDelete)) {
             delete.setLong(1, id);
@@ -100,9 +100,9 @@ public class DriverDaoJdbcImpl implements DriverDao {
 
     private Driver getDriverFromResultSet(ResultSet resultSet) throws SQLException {
         Driver driver = new Driver();
-        driver.setId(resultSet.getObject("driver_id", Long.class));
-        driver.setName(resultSet.getString("driver_name"));
-        driver.setLicenceNumber(resultSet.getString("driver_licence_number"));
+        driver.setId(resultSet.getObject("id", Long.class));
+        driver.setName(resultSet.getString("name"));
+        driver.setLicenceNumber(resultSet.getString("licence_number"));
         return driver;
     }
 }

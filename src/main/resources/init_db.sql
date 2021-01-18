@@ -45,3 +45,17 @@ CREATE TABLE `taxi_service`.`cars_drivers` (
                                                        REFERENCES `taxi_service`.`drivers` (`driver_id`)
                                                        ON DELETE NO ACTION
                                                        ON UPDATE NO ACTION);
+
+ALTER TABLE `taxi_service`.`cars`
+    CHANGE COLUMN `car_id` `id` BIGINT NOT NULL AUTO_INCREMENT ,
+    CHANGE COLUMN `car_model` `model` VARCHAR(45) NOT NULL ;
+
+ALTER TABLE `taxi_service`.`drivers`
+    CHANGE COLUMN `driver_id` `id` BIGINT NOT NULL AUTO_INCREMENT ,
+    CHANGE COLUMN `driver_name` `name` VARCHAR(45) NOT NULL ,
+    CHANGE COLUMN `driver_licence_number` `licence_number` VARCHAR(45) NOT NULL ;
+
+ALTER TABLE `taxi_service`.`manufacturers`
+    CHANGE COLUMN `manufacturer_id` `id` BIGINT NOT NULL AUTO_INCREMENT ,
+    CHANGE COLUMN `manufacturer_name` `name` VARCHAR(45) NOT NULL ,
+    CHANGE COLUMN `manufacturer_country` `country` VARCHAR(45) NOT NULL ;
