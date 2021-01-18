@@ -58,8 +58,8 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
     public List<Manufacturer> getAll() {
         String query = "SELECT * FROM manufacturers WHERE deleted=FALSE";
         try (Connection connection = ConnectionUtil.getConnection();
-                 Statement stSelectAll = connection.createStatement()) {
-            ResultSet resultSet = stSelectAll.executeQuery(query);
+                 PreparedStatement stSelectAll = connection.prepareStatement(query)) {
+            ResultSet resultSet = stSelectAll.executeQuery();
             List<Manufacturer> manufacturers = new ArrayList<>();
             while (resultSet.next()) {
                 manufacturers.add(getManufacturerFromResultSet(resultSet));

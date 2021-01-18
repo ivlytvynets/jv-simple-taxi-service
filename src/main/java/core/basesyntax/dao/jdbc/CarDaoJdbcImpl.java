@@ -67,8 +67,8 @@ public class CarDaoJdbcImpl implements CarDao {
                 + "INNER JOIN drivers d ON d.id=cd.driver_id "
                 + "WHERE c.deleted=FALSE AND d.deleted=FALSE";
         try (Connection connection = ConnectionUtil.getConnection();
-                Statement stSelectAll = connection.createStatement()) {
-            ResultSet resultSet = stSelectAll.executeQuery(querySelect);
+                PreparedStatement stSelectAll = connection.prepareStatement(querySelect)) {
+            ResultSet resultSet = stSelectAll.executeQuery();
             List<Car> cars = new ArrayList<>();
             while (resultSet.next()) {
                 cars.add(getCarFromResultSet(resultSet));

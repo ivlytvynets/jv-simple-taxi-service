@@ -57,8 +57,8 @@ public class DriverDaoJdbcImpl implements DriverDao {
     public List<Driver> getAll() {
         String querySelect = "SELECT * FROM drivers WHERE deleted=FALSE";
         try (Connection connection = ConnectionUtil.getConnection();
-                Statement select = connection.createStatement()) {
-            ResultSet resultSet = select.executeQuery(querySelect);
+                PreparedStatement select = connection.prepareStatement(querySelect)) {
+            ResultSet resultSet = select.executeQuery();
             List<Driver> drivers = new ArrayList<>();
             while (resultSet.next()) {
                 drivers.add(getDriverFromResultSet(resultSet));
