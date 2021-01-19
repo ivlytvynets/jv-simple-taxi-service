@@ -48,7 +48,7 @@ public class ManufacturerDaoJdbcImpl implements ManufacturerDao {
             if (resultSet.next()) {
                 manufacturer = getManufacturerFromResultSet(resultSet);
             }
-            return Optional.of(manufacturer);
+            return Optional.ofNullable(manufacturer);
         } catch (SQLException e) {
             throw new DataProcessingException("Can't get manufacturer with id " + id, e);
         }
