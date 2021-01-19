@@ -76,13 +76,13 @@ public class Application {
         driverService.update(dmytro);
         driverService.update(bohdan);
 
-        System.out.println(manufacturerService.get(1L));
-        System.out.println(manufacturerService.get(2L));
-        System.out.println(manufacturerService.get(3L));
+        System.out.println(manufacturerService.get(mercedes.getId()));
+        System.out.println(manufacturerService.get(toyota.getId()));
+        System.out.println(manufacturerService.get(volkswagen.getId()));
 
-        System.out.println(driverService.get(1L));
-        System.out.println(driverService.get(2L));
-        System.out.println(driverService.get(3L));
+        System.out.println(driverService.get(ivan.getId()));
+        System.out.println(driverService.get(bohdan.getId()));
+        System.out.println(driverService.get(dmytro.getId()));
 
         carService.addDriverToCar(ivan, car1);
         carService.addDriverToCar(ivan, car2);
@@ -91,41 +91,41 @@ public class Application {
         carService.addDriverToCar(bohdan, car1);
         carService.addDriverToCar(dmytro, car1);
 
-        System.out.println(carService.get(1L));
-        System.out.println(carService.get(2L));
-        System.out.println(carService.get(3L));
+        System.out.println(carService.get(car1.getId()));
+        System.out.println(carService.get(car2.getId()));
+        System.out.println(carService.get(car3.getId()));
 
-        System.out.println(carService.getAllByDriver(1L));
-        System.out.println(carService.getAllByDriver(2L));
-        System.out.println(carService.getAllByDriver(3L));
+        System.out.println(carService.getAllByDriver(ivan.getId()));
+        System.out.println(carService.getAllByDriver(bohdan.getId()));
+        System.out.println(carService.getAllByDriver(dmytro.getId()));
 
         carService.removeDriverFromCar(bohdan, car1);
         carService.removeDriverFromCar(ivan, car2);
         carService.removeDriverFromCar(dmytro, car1);
 
-        System.out.println(carService.getAllByDriver(1L));
-        System.out.println(carService.getAllByDriver(2L));
-        System.out.println(carService.getAllByDriver(3L));
+        System.out.println(carService.getAllByDriver(ivan.getId()));
+        System.out.println(carService.getAllByDriver(bohdan.getId()));
+        System.out.println(carService.getAllByDriver(dmytro.getId()));
 
-        carService.delete(1L);
+        carService.delete(car1.getId());
         System.out.println(carService.getAll());
-        carService.delete(2L);
+        carService.delete(car2.getId());
         System.out.println(carService.getAll());
-        carService.delete(3L);
+        carService.delete(car3.getId());
         System.out.println(carService.getAll());
 
-        driverService.delete(1L);
+        driverService.delete(ivan.getId());
         System.out.println(driverService.getAll());
-        driverService.delete(2L);
+        driverService.delete(bohdan.getId());
         System.out.println(driverService.getAll());
-        driverService.delete(3L);
+        driverService.delete(dmytro.getId());
         System.out.println(driverService.getAll());
 
-        manufacturerService.delete(1L);
+        manufacturerService.delete(mercedes.getId());
         System.out.println(manufacturerService.getAll());
-        manufacturerService.delete(2L);
+        manufacturerService.delete(toyota.getId());
         System.out.println(manufacturerService.getAll());
-        manufacturerService.delete(3L);
+        manufacturerService.delete(volkswagen.getId());
         System.out.println(manufacturerService.getAll());
     }
 }
