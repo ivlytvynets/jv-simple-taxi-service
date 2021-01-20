@@ -5,18 +5,10 @@
 </head>
 <body>
 <h1>Welcome to Taxi Service!</h1>
-<p>
-    <a href="${pageContext.request.contextPath}/drivers/add">Inject driver to DB</a>
-    <a href="${pageContext.request.contextPath}/drivers/all">Get all drivers from DB</a>
-</p>
-<p>
-    <a href="${pageContext.request.contextPath}/manufacturers/add">Inject manufacturer to DB</a>
-</p>
-<p>
-    <a href="${pageContext.request.contextPath}/cars/add">Inject car to DB</a>
-</p>
-<p>
-    <a href="${pageContext.request.contextPath}/cars/drivers/add">Add driver to car</a>
-</p>
+<a href="${pageContext.request.contextPath}/drivers/add">Inject driver to DB</a>
+<a href="${pageContext.request.contextPath}/drivers/all">Get all drivers from DB</a>
+<a href="${pageContext.request.contextPath}/manufacturers/add">Inject manufacturer to DB</a>
+<a href="${pageContext.request.contextPath}/cars/add">Inject car to DB</a>
+<a href="${pageContext.request.contextPath}/cars/drivers/add">Add driver to car</a>
 </body>
 </html>

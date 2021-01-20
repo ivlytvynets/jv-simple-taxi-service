@@ -28,8 +28,14 @@ public class InjectCarController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String model = req.getParameter("model");
-        Long manufacturerId = Long.valueOf(req.getParameter("manufacturer_id"));
-        Manufacturer manufacturer = manufacturerService.get(manufacturerId);
+        Manufacturer manufacturer = null;
+        try {
+            manufacturer = manufacturerService.get(Long.valueOf(req
+                    .getParameter("manufacturer_id")));
+        } catch (RuntimeException e) {
+            req.setAttribute("message", "Manufacturer wasn't found");
+            req.getRequestDispatcher("/WEB-INF/views/cars/injectCar.jsp").forward(req, resp);
+        }
         Car car = new Car();
         car.setModel(model);
         car.setManufacturer(manufacturer);
