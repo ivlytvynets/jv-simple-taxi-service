@@ -7,7 +7,7 @@
 <h1>Hello! Enter, please, driver's details:</h1>
 <form method="post" action="${pageContext.request.contextPath}/drivers/add">
     Please, enter driver's name: <input type="text" name="name">
-    Please, enter driver's licence number: <input type="text" name="licenceNumber">
+    Please, enter driver's licence number: <input type="text" name="licence_number">
     <button type="submit">CREATE</button>
 </form>
 </body>
