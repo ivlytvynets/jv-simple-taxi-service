@@ -5,7 +5,7 @@
          version="3.1">
    <servlet>
        <servlet-name>index</servlet-name>
-       <servlet-class>core.basesyntax.controllers.IndexController</servlet-class>
+       <servlet-class>core.basesyntax.controller.IndexController</servlet-class>
    </servlet>
     <servlet-mapping>
         <servlet-name>index</servlet-name>
@@ -14,7 +14,7 @@
 
     <servlet>
         <servlet-name>allDrivers</servlet-name>
-        <servlet-class>core.basesyntax.controllers.drivers.GetAllDriversController</servlet-class>
+        <servlet-class>core.basesyntax.controller.driver.GetAllDriversController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>allDrivers</servlet-name>
@@ -23,7 +23,7 @@
 
     <servlet>
         <servlet-name>addDriver</servlet-name>
-        <servlet-class>core.basesyntax.controllers.drivers.CreateDriverController</servlet-class>
+        <servlet-class>core.basesyntax.controller.driver.CreateDriverController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addDriver</servlet-name>
@@ -32,7 +32,7 @@
 
     <servlet>
         <servlet-name>addManufacturer</servlet-name>
-        <servlet-class>core.basesyntax.controllers.manufacturers.CreateManufacturerController</servlet-class>
+        <servlet-class>core.basesyntax.controller.manufacturer.CreateManufacturerController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addManufacturer</servlet-name>
@@ -41,7 +41,7 @@
 
     <servlet>
         <servlet-name>addCar</servlet-name>
-        <servlet-class>core.basesyntax.controllers.cars.CreateCarController</servlet-class>
+        <servlet-class>core.basesyntax.controller.car.CreateCarController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addCar</servlet-name>
@@ -50,7 +50,7 @@
 
     <servlet>
         <servlet-name>addDriverToCar</servlet-name>
-        <servlet-class>core.basesyntax.controllers.cars.AddDriverToCarController</servlet-class>
+        <servlet-class>core.basesyntax.controller.car.AddDriverToCarController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addDriverToCar</servlet-name>

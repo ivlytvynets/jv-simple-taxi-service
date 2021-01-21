@@ -1,4 +1,4 @@
-package core.basesyntax.controllers;
+package core.basesyntax.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
