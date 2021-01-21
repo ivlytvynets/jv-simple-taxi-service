@@ -23,7 +23,7 @@
 
     <servlet>
         <servlet-name>addDriver</servlet-name>
-        <servlet-class>core.basesyntax.controllers.drivers.InjectDriverController</servlet-class>
+        <servlet-class>core.basesyntax.controllers.drivers.CreateDriverController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addDriver</servlet-name>
@@ -32,7 +32,7 @@
 
     <servlet>
         <servlet-name>addManufacturer</servlet-name>
-        <servlet-class>core.basesyntax.controllers.manufacturers.InjectManufacturerController</servlet-class>
+        <servlet-class>core.basesyntax.controllers.manufacturers.CreateManufacturerController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addManufacturer</servlet-name>
@@ -41,7 +41,7 @@
 
     <servlet>
         <servlet-name>addCar</servlet-name>
-        <servlet-class>core.basesyntax.controllers.cars.InjectCarController</servlet-class>
+        <servlet-class>core.basesyntax.controllers.cars.CreateCarController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>addCar</servlet-name>

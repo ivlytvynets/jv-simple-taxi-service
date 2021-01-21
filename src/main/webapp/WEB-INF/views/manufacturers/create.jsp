@@ -4,7 +4,7 @@
     <title>Add Manufacturer</title>
 </head>
 <body>
-<h1>Hello! Enter, please, driver's details:</h1>
+<h1>Hello! Enter, please, manufacturer's details:</h1>
 
 <form method="post" action="${pageContext.request.contextPath}/manufacturers/add">
     Please, enter manufacturer's name: <input type="text" name="name">

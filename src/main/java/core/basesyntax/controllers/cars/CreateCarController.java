@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class InjectCarController extends HttpServlet {
+public class CreateCarController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("core.basesyntax");
     private CarService carService = (CarService) injector
             .getInstance(CarService.class);
@@ -21,21 +21,15 @@ public class InjectCarController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/cars/injectCar.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/views/cars/create.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String model = req.getParameter("model");
-        Manufacturer manufacturer = null;
-        try {
-            manufacturer = manufacturerService.get(Long.valueOf(req
-                    .getParameter("manufacturer_id")));
-        } catch (RuntimeException e) {
-            req.setAttribute("message", "Manufacturer wasn't found");
-            req.getRequestDispatcher("/WEB-INF/views/cars/injectCar.jsp").forward(req, resp);
-        }
+        Manufacturer manufacturer = manufacturerService.get(Long.valueOf(req
+                .getParameter("manufacturer_id")));
         Car car = new Car();
         car.setModel(model);
         car.setManufacturer(manufacturer);
