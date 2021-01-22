@@ -104,7 +104,7 @@ public class DriverDaoJdbcImpl implements DriverDao {
     public Optional<Driver> findByLogin(String login) {
         String queryFindByLogin = "SELECT * FROM drivers WHERE login=?";
         try (Connection connection = ConnectionUtil.getConnection();
-             PreparedStatement stFindByLogin = connection.prepareStatement(queryFindByLogin)) {
+                PreparedStatement stFindByLogin = connection.prepareStatement(queryFindByLogin)) {
             stFindByLogin.setString(1, login);
             ResultSet resultSet = stFindByLogin.executeQuery();
             Driver driver = null;
