@@ -5,6 +5,8 @@ CREATE TABLE `taxi_service`.`manufacturers` (
                                                 `name` VARCHAR(45) NOT NULL,
                                                 `country` VARCHAR(45) NOT NULL,
                                                 `deleted` TINYINT NOT NULL DEFAULT 0,
+                                                `login` VARCHAR(45) NOT NULL,
+                                                `password` VARCHAR(45) NOT NULL,
                                                 PRIMARY KEY (`id`),
                                                 UNIQUE INDEX `manufacturer_id_UNIQUE` (`id` ASC) VISIBLE);
 

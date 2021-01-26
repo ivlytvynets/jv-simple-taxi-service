@@ -18,13 +18,15 @@ import java.util.Optional;
 public class DriverDaoJdbcImpl implements DriverDao {
     @Override
     public Driver create(Driver driver) {
-        String queryInsert = "INSERT INTO drivers (name, licence_number)"
-                + "VALUES (?, ?)";
+        String queryInsert = "INSERT INTO drivers (name, licence_number, login, password)"
+                + "VALUES (?, ?, ?, ?)";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement insert = connection.prepareStatement(queryInsert,
                         Statement.RETURN_GENERATED_KEYS)) {
             insert.setString(1, driver.getName());
             insert.setString(2, driver.getLicenceNumber());
+            insert.setString(3, driver.getLogin());
+            insert.setString(4, driver.getPassword());
             insert.execute();
             ResultSet resultSet = insert.getGeneratedKeys();
             if (resultSet.next()) {
@@ -98,11 +100,30 @@ public class DriverDaoJdbcImpl implements DriverDao {
         }
     }
 
+    @Override
+    public Optional<Driver> findByLogin(String login) {
+        String queryFindByLogin = "SELECT * FROM drivers WHERE login=?";
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement stFindByLogin = connection.prepareStatement(queryFindByLogin)) {
+            stFindByLogin.setString(1, login);
+            ResultSet resultSet = stFindByLogin.executeQuery();
+            Driver driver = null;
+            if (resultSet.next()) {
+                driver = getDriverFromResultSet(resultSet);
+            }
+            return Optional.ofNullable(driver);
+        } catch (SQLException e) {
+            throw new DataProcessingException("Can't find driver with login " + login, e);
+        }
+    }
+
     private Driver getDriverFromResultSet(ResultSet resultSet) throws SQLException {
         Driver driver = new Driver();
         driver.setId(resultSet.getObject("id", Long.class));
         driver.setName(resultSet.getString("name"));
         driver.setLicenceNumber(resultSet.getString("licence_number"));
+        driver.setLogin(resultSet.getString("login"));
+        driver.setPassword(resultSet.getString("password"));
         return driver;
     }
 }
